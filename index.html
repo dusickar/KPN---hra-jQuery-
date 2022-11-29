@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="sk">
+
+<head>
+    <title>Kameň-papier-nožnice</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <di class="container">
+                <a class="navbar-brand d-sm-block d-none" href="#">Kameň - Papier - Nožnice</a>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-lg btn-light px-4 col-12 col-sm-4 mb-3 mb-sm-0 offset-xxl-2 offset-lg-1 game">Spusti hru</button>
+
+                <!-- MODAL -->
+                <div class="modal" id="myModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Skóre</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row-cols-12">
+                                    <div class="d-flex align-middle">
+                                        <div class="col-4">
+                                            <p>
+                                                <i class="fa-solid fa-user fa-5x"></i>
+                                                <p id="userscore" class="display-4 ms-3 text-success fw-bold">0</p>
+                                            </p>
+                                        </div>
+                                        <div class="col-4 mt-3">
+                                            <i class="fa-solid fa-minus fa-3x"></i>
+                                        </div>
+                                        <div class="col-4">
+                                            <p>
+                                                <i class="fa-solid fa-computer fa-5x"></i>
+                                                <p id="pcscore" class=" ms-3 display-4 text-success fw-bold">0</p>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-primary option1">Možnosť 1</button>
+                                <button type="button" class="btn btn-primary option2">Možnosť 2</button>
+                                <button type="button" class="btn btn-primary option3">Možnosť 3</button>
+                            </div>
+
+                            <div class="modal-footer">
+                                <a href="#historyround" type="button" id="history" class="btn btn-primary me-auto">História</a>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Koniec hry</button>
+                                <button type="button" class="btn btn-success" id="nextGame">Ďalšie kolo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="navbar-toggler d-lg-none col-12 col-sm-1 " type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active fs-4 mx-3 col-sm-12 text-center" href="#" aria-current="page">
+                                <i class="fa-solid fa-house"></i>
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-4 mx-3 col-sm-12 text-center" href="#rules">Pravidlá</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="main-image">
+            <img src="img/kamen-papier-noznice.jpg" alt="" class="w-100 img-fluid">
+        </div>
+        
+        <!-- PRAVIDLÁ HRY -->
+        <div class="container py-5">
+            <div id="rules">
+                <h2 class="h1 py-4">Pravidlá hry</h2>
+                <p class="lead">Pravidlá hry sú veľmi jednoduché. V každom kole si zvolíte, či dáte <strong>kameň, papier alebo nožnice</strong>. Počítač si zvolí svoju voľbu a následne vyhodnotí čí ste vyhrali alebo prehrali.</p>
+                <p class="lead">Do príkazového riadku treba napísať čo ste si zvolili : <strong>k / p / n .</strong></p>
+                <p class="lead">Možné varianty: </p>
+                <div class="row py-5">
+                    <div class="stone col-lg-4 align-bottom mb-4 mb-lg-0">
+                        <ul class="h5 list-group">
+                            <li class="list-group-item">
+                                <p class="mt-2 mb-0">Kameň - Kameň <i class="fa-solid fa-arrow-right mx-4"></i><span class="text-warning"> Remíza </span></p>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="mt-2 mb-0">Kameň - Papier <i class="fa-solid fa-arrow-right mx-4"></i><span class="text-danger"> Prehra KAMEŇ </span></p>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="mt-2 mb-0">Kameň - Nožnice <i class="fa-solid fa-arrow-right ms-2 me-4"></i><span class="text-success"> Výhra KAMEŇ </span></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="papper col-lg-4 mb-4 mb-lg-0">
+                        <ul class="h5 list-group">
+                            <li class="list-group-item">
+                                <p class="mt-2 mb-0">Papier - Kameň <i class="fa-solid fa-arrow-right mx-4"></i><span class="text-success"> Výhra PAPIER </span></p>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="mt-2 mb-0">Papier - Nožnice <i class="fa-solid fa-arrow-right mx-3"></i><span class="text-danger"> Prehra PAPIER </span></p>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="mt-2 mb-0">Papier - Papier <i class="fa-solid fa-arrow-right mx-4"></i><span class="text-warning"> Remíza </span></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="scissors col-lg-4 mb-4 mb-lg-0">
+                        <ul class="h5 list-group">
+                            <li class="list-group-item">
+                                <p class="mt-2 mb-0">Nožnice - Kameň <i class="fa-solid fa-arrow-right mx-3"></i><span class="text-danger"> Prehra NOŽNICE </span></p>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="mt-2 mb-0">Nožnice - Nožnice <i class="fa-solid fa-arrow-right mx-2"></i><span class="text-warning"> Remíza </span></p>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="mt-2 mb-0">Nožnice - Papier <i class="fa-solid fa-arrow-right mx-3"></i><span class="text-success"> Výhra NOŽNICE</span></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div id="historyround">
+                <h2 class="h1 mb-4">História kôl</h2>
+                <ul id="skore">
+                    
+                </ul>
+
+                <hr>
+
+                <!-- POČÍTADLO KAMEN/PAPIER/NOZNICE -->
+                <div>
+                    <div class="row">
+                        <h2 class="h1 mb-4">Počítadlo kameň/papier/nožnice</h2>
+                        <div class="col-sm-4 mb-3 mb-sm-0 mt-2">
+                            <p class="text-center h5"><span class="fw-bolder">Kameň:</span> <span id="kamen" class="text-center fw-normal">0</span></p>
+                        </div>
+    
+                        <div class="col-sm-4 mb-3 mb-sm-0 mt-2">
+                            <p class="text-center h5"><span class="fw-bolder">Papier:</span> <span id="papier" class="text-center fw-normal">0</span></p>
+                        </div>
+    
+                        <div class="col-sm-4 mb-3 mb-sm-0 mt-2">
+                            <p class="text-center h5"><span class="fw-bolder">Nožnice:</span> <span id="noznice" class="text-center fw-normal">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- POČÍTADLO VÝHIER/REMÍZ/PREHIER -->
+            <div>
+                <div class="row">
+                    <h2 class="h1 mb-4">Počítadlo výhier/remíz/prehier</h2>
+                    <div class="col-sm-4 mb-3 mb-sm-0 mt-2">
+                        <p class="text-center h5"><span class="fw-bolder">Počet výhier:</span> <span id="wincount" class="text-center fw-normal">0</span></p>
+                    </div>
+
+                    <div class="col-sm-4 mb-3 mb-sm-0 mt-2">
+                        <p class="text-center h5"><span class="fw-bolder">Počet remíz:</span> <span id="drawcount" class="text-center fw-normal">0</span></p>
+                    </div>
+
+                    <div class="col-sm-4 mb-3 mb-sm-0 mt-2">
+                        <p class="text-center h5"><span class="fw-bolder">Počet prehier:</span> <span id="losingcount" class="text-center fw-normal">0</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </main>
+    <footer>
+        <p class="text-center bg-primary text-bg-dark py-5 fs-5 align-middle m-0"> Kameň - Papier - Nožnice &copy; 2022</p>
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+
+    <script src="js/jquery.js"></script>
+</body>
+
+</html>
