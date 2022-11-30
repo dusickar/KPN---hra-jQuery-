@@ -1,60 +1,71 @@
-document.getElementById("playGame");
-document.getElementById("nextGame");
-document.getElementById("history");
 
-    // USER skóre
-    let scoreUser = 0;
-    document.getElementById('userscore').innerHTML = scoreUser;
-    
-    // PC skóre
-    let scorePc = 0;
-    document.getElementById('pcscore').innerHTML = scorePc;
+// USER skóre
+let scoreUser = 0;
+document.getElementById('userscore').innerHTML = scoreUser;
+
+// PC skóre
+let scorePc = 0;
+document.getElementById('pcscore').innerHTML = scorePc;
 
 
+// POČET VÝHIER  
+let countWin = 0;
+document.getElementById('wincount').innerHTML = countWin;
 
-    // POČET VÝHIER  
-    let countWin = 0;
-    document.getElementById('wincount').innerHTML = countWin;
+// POČET PREHIER
+let countLosing = 0;
+document.getElementById('losingcount').innerHTML = countLosing;
 
-    // POČET PREHIER
-    let countLosing = 0;
-    document.getElementById('losingcount').innerHTML = countLosing;
+// POČET REMÍZ
+let countDraw = 0;
+document.getElementById('drawcount').innerHTML = countDraw;
 
-    // POČET REMÍZ
-    let countDraw = 0;
-    document.getElementById('drawcount').innerHTML = countDraw;
+let score = []; 
+let round = [];
+let obj = {
+    kamen: 0,
+    papier: 0,
+    noznice: 0
+}
 
-    let score = []; 
-    let round = [];
-    let obj = {
-        kamen: 0,
-        papier: 0,
-        noznice: 0
-    };
-    
-    
-   
-    $( "button.option1" ).on( "click", function() {
-        
-    });
-
+$(document).ready(function(){
     $( "button.game, button#nextGame" ).on( "click", function game() {
-     
-        alert('Hra začína! Zadaj hodnotu (k, p, n) a uvidíš či si vyhral!');
+ 
+        alert('Hra začína! Vyber si (kameň, papier, nožnice) a uvidíš či si vyhral!');
+
+        let userChoice;
+
         
+
+
+
+        $( "button.option-btn" ).on( "click", function() {
+            $( "#k" ).on("click", function() {
+                userChoice = 'k';
+                
+                oneCall;
+                console.log('User : kameň ');
+                console.log('PC : ' + oneCall );
+            }); 
+
+            $( "#p" ).on("click", function() {
+                userChoice = 'p';
+                oneCall;
+                console.log('User : papier ');
+                console.log('PC : ' + oneCall );
+            });
+
+            $( "#n" ).on("click", function() {
+                userChoice = 'n';
+                oneCall;
+                console.log('User : nožnice ');
+                console.log('PC : ' + oneCall );
+        });
         
+           
+
         
-        //Voľba usera
-        const oneCall = PcChoice();
-        const userChoice = prompt('Tvoja voľba?');
-        kpn = ['k',  'p',  'n'];
-        console.log('User : ', userChoice);
-        
-        alert('Voľba PC : ' + oneCall);
-    
-    
-       
-        // Podmienky pre výhru
+
         if (userChoice === 'k' && oneCall === 'n') {
             console.log('Výhra user!')
             alert('Výhra');
@@ -149,27 +160,58 @@ document.getElementById("history");
         document.getElementById('noznice').innerHTML =obj.noznice;
     
     
-    });  
+
+        });
+    });
+        
+    
+    
+    // Podmienky pre výhru
+    
+
+            //Voľba usera
+            // let userChoice; //= prompt('Tvoja voľba?');
+            // kpn = ['k',  'p',  'n'];
+            // console.log('User : ', userChoice);
+            
+            // const oneCall = PcChoice();
+            // alert('Voľba PC : ' + oneCall);
+    
+    
+   
     
 
 
+   
 
-// HISTÓRIA
-function history(skore, round, score) {
-    history.addEventListener('click', history)
 
-    const list = document.getElementById(skore),
-			newItem = document.createElement('li');
 
-		newItem.textContent = round;
-		newItem.textContent = score;
-		list.appendChild(newItem);
-       
-    console.log;
-};
+    // HISTÓRIA
+    function history(skore, round, score) {
+        history.addEventListener('click', history)
+
+        const list = document.getElementById(skore),
+                newItem = document.createElement('li');
+
+            newItem.textContent = round;
+            newItem.textContent = score;
+            list.appendChild(newItem);
+        
+        console.log;
+    };
 
     
 //Voľba PC
+
+
+// playGame.addEventListener('click', game);
+// nextGame.addEventListener('click', game);
+
+});
+
+
+
+let oneCall = PcChoice();
 function PcChoice() {
     const length = 1; 
     // Declare all characters
@@ -181,13 +223,6 @@ function PcChoice() {
         str += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     console.log('PC : ' + str ) 
-    
+
     return str;
-} 
-
-// playGame.addEventListener('click', game);
-// nextGame.addEventListener('click', game);
-
-
-
-
+};
