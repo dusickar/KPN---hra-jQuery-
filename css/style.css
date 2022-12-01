@@ -1,3 +1,8 @@
 body {
     margin: 0;
 }
+
+.input-group img {
+    top: 25%;
+    right: 10px;
+}
