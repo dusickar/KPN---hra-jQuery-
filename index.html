@@ -19,18 +19,23 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <di class="container">
                 <a class="navbar-brand d-sm-block d-none" href="#">Kameň - Papier - Nožnice</a>
-                <button type="button" id="playGame" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-lg btn-light px-4 col-12 col-sm-4 mb-3 mb-sm-0 offset-xxl-2 offset-lg-1">Spusti hru</button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-lg btn-light px-4 col-12 col-sm-4 mb-3 mb-sm-0 offset-xxl-2 offset-lg-1 game">Spusti hru</button>
 
                 <!-- MODAL -->
                 <div class="modal" id="myModal" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Skóre</h4>
+                                <h2 class="h1 modal-title">Skóre</h2>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="row-cols-12">
+                                    <div class="mb-5 col-12 text-center">
+                                        <button type="button" class="win badge text-bg-light py-3 px-4">Výhra</button>
+                                        <button type="button" class="draw badge text-bg-light py-3 px-4">Remíza</button>
+                                        <button type="button" class="lose badge text-bg-light py-3 px-4">Prehra</button>
+                                    </div>
                                     <div class="d-flex align-middle">
                                         <div class="col-4">
                                             <p>
@@ -48,12 +53,26 @@
                                             </p>
                                         </div>
                                     </div>
+                                    
+                                    <hr>
+
+                                    <div class="input-group">
+                                        <span class="input-group-text">Zmeniť meno hráča</span>
+                                        <input type="text" name="meno" id="name" class="form-control" required="" disabled>
+                                        <img src="img/send.svg" alt="" class="position-absolute">
+                                      </div>
                                 </div>
                             </div>
+                            
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-primary option-btn" id="k">kameň</button>
+                                <button type="button" class="btn btn-primary option-btn" id="p">papier</button>
+                                <button type="button" class="btn btn-primary option-btn" id="n">nožnice</button>
+                            </div>
+
                             <div class="modal-footer">
-                                <a href="#historyround" type="button" id="history" class="btn btn-primary me-auto">História</a>
+                                <a href="#historyround" type="button" id="history" class="btn btn-secondary me-auto">História</a>
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Koniec hry</button>
-                                <button type="button" class="btn btn-success" id="nextGame">Ďalšie kolo</button>
                             </div>
                         </div>
                     </div>
@@ -198,7 +217,10 @@
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
 
-    <script src="js/game.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+
+    <script src="js/jquery.js"></script>
 </body>
 
 </html>
