@@ -1,3 +1,6 @@
+let userChoice;
+let oneCall;
+let PcChoice;
 
 // USER skóre
 let scoreUser = 0;
@@ -20,6 +23,7 @@ document.getElementById('losingcount').innerHTML = countLosing;
 let countDraw = 0;
 document.getElementById('drawcount').innerHTML = countDraw;
 
+//HISTÓRIA HIER, KOLÁ
 let score = []; 
 let round = [];
 let obj = {
@@ -28,68 +32,89 @@ let obj = {
     noznice: 0
 }
 
-$(document).ready(function(){
-    $( "button.game, button#nextGame" ).on( "click", function game() {
- 
-        alert('Hra začína! Vyber si (kameň, papier, nožnice) a uvidíš či si vyhral!');
+//Spustenie hry
+$( "button.game" ).on( "click", function game() {
+    
+    alert('Hra začína! Vyber si (kameň, papier, nožnice) a uvidíš či si vyhral!');
+    
+    //Voľba usera kameň
+    $("#k").on('click', function() {
+        userChoice = 'k'
+        console.log(round + '.kolo');
+        console.log('User : ' + userChoice);
+        $("button.win, button.draw, button.lose").removeClass("text-bg-success, text-bg-warning, text-bg-danger")
+        $("button.win, button.draw, button.lose").addClass("text-bg-light");
+    });
 
-        let userChoice;
+    //Voľba usera papier
+    $("#p").on('click', function() {
+        userChoice = 'p';
+        console.log(round + '.kolo');
+        console.log('User : ' + userChoice);
+        $("button.win, button.draw, button.lose").removeClass("text-bg-success, text-bg-warning, text-bg-danger")
+        $("button.win, button.draw, button.lose").addClass("text-bg-light");
+    });
 
-        
+    //Voľba usera nožnice
+    $("#n").on('click', function() {
+        userChoice = 'n';
+        console.log(round + '.kolo');
+        console.log('User : ' + userChoice);
+        $("button.win, button.draw, button.lose").removeClass("text-bg-success, text-bg-warning, text-bg-danger")
+        $("button.win, button.draw, button.lose").addClass("text-bg-light");
+    });
+    
+
+    //Voľba PC
+    $("button.option-btn").on('click', function(){
+
+    
+        PcChoice = Math.floor(Math.random() * 3);
+    
+        if(PcChoice + 1 == 1){
+            oneCall = 'k';
+        }
+        if(PcChoice + 1 == 2){
+            oneCall = 'p';
+        }
+        if(PcChoice + 1 == 3){
+            oneCall = 'n';
+        }
+    
+        console.log('PC : ' + oneCall);
 
 
-
-        $( "button.option-btn" ).on( "click", function() {
-            $( "#k" ).on("click", function() {
-                userChoice = 'k';
-                
-                oneCall;
-                console.log('User : kameň ');
-                console.log('PC : ' + oneCall );
-            }); 
-
-            $( "#p" ).on("click", function() {
-                userChoice = 'p';
-                oneCall;
-                console.log('User : papier ');
-                console.log('PC : ' + oneCall );
-            });
-
-            $( "#n" ).on("click", function() {
-                userChoice = 'n';
-                oneCall;
-                console.log('User : nožnice ');
-                console.log('PC : ' + oneCall );
-        });
-        
-           
-
-        
-
+        // Podmienky pre výhru
         if (userChoice === 'k' && oneCall === 'n') {
             console.log('Výhra user!')
-            alert('Výhra');
+            alert('Výhra!'); 
+            $("button.win").removeClass("text-bg-light");
+            $("button.win").addClass("text-bg-success");
             scoreUser ++;
             countWin++;
             obj.kamen++;
-            round++;
-            score.push(round + '.kolo :' + ' Výhra user!'); // pripočítanie + 1 ku skóre
+            round++;  // pripočítanie + 1 ku skóre
+            score.push(round + '.kolo :' + ' Výhra user!'); 
         } else if (userChoice === 'p' && oneCall === 'k') {
             console.log('Výhra user!')
-            alert('Výhra');
+            alert('Výhra!'); 
+            $("button.win").removeClass("text-bg-light");
+            $("button.win").addClass("text-bg-success");
             scoreUser ++;
             countWin++;
             obj.papier++;
-            round++;
-            score.push(round + '.kolo :' + ' Výhra user!'); // pripočítanie + 1 ku skóre
+            round++;  // pripočítanie + 1 ku skóre
+            score.push(round + '.kolo :' + ' Výhra user!'); 
         } else if (userChoice === 'n' && oneCall === 'p') {
             console.log('Výhra user!')
-            alert('Výhra');
+            alert('Výhra!'); 
+            $("button.win").removeClass("text-bg-light");
+            $("button.win").addClass("text-bg-success");
             scoreUser ++;
             countWin++; 
             obj.noznice++;
-            round++;
-            score.push(round + '.kolo :' + ' Výhra user!'); // pripočítanie + 1 ku skóre
+            round++;  // pripočítanie + 1 ku skóre
+            score.push(round + '.kolo :' + ' Výhra user!'); 
         };
     
         
@@ -97,132 +122,143 @@ $(document).ready(function(){
         if (userChoice === 'k' && oneCall === 'p') {
             console.log('Prehra user!')
             alert('Prehra!'); 
+            $("button.lose").removeClass("text-bg-light");
+            $("button.lose").addClass("text-bg-danger");
             scorePc++;
             countLosing++;
             obj.kamen++;
-            round++;
-            score.push(round + '.kolo :' + ' Prehra user!'); // pripočítanie + 1 ku skóre
+            round++;  // pripočítanie + 1 ku skóre
+            score.push(round + '.kolo :' + ' Prehra user!'); 
         } else if (userChoice === 'p' && oneCall === 'n') {
             console.log('Prehra user!')
             alert('Prehra!'); 
+            $("button.lose").removeClass("text-bg-light");
+            $("button.lose").addClass("text-bg-danger");
             scorePc++;
             countLosing++;
             obj.papier++;
-            round++;
-            score.push(round + '.kolo :' + ' Prehra user!'); // pripočítanie + 1 ku skóre
+            round++;  // pripočítanie + 1 ku skóre
+            score.push(round + '.kolo :' + ' Prehra user!'); 
         } else if (userChoice === 'n' && oneCall === 'k') {
             console.log('Prehra user!')
             alert('Prehra!'); 
+            $("button.lose").removeClass("text-bg-light");
+            $("button.lose").addClass("text-bg-danger");
             scorePc++;
             countLosing++;
             obj.noznice++;
-            round++;
-            score.push(round + '.kolo :' + ' Prehra user!'); // pripočítanie + 1 ku skóre
+            round++;  // pripočítanie + 1 ku skóre
+            score.push(round + '.kolo :' + ' Prehra user!'); 
         };
     
-       
+        
         // Podmienky pre remízu
         if (userChoice === 'k' && oneCall === 'k') {
             console.log('Remíza!')
             alert('Remíza!');
+            $("button.draw").removeClass("text-bg-light");
+            $("button.draw").addClass("text-bg-warning");
             countDraw++;
             obj.kamen++;
-            round++;
-            score.push(round + '.kolo :' + ' Remíza!'); // pripočítanie + 1 ku skóre
+            round++;  // pripočítanie + 1 ku skóre
+            score.push(round + '.kolo :' + ' Remíza!'); 
         } else if (userChoice === 'p' && oneCall === 'p') {
             console.log('Remíza!')
             alert('Remíza!');
+            $("button.draw").removeClass("text-bg-light");
+            $("button.draw").addClass("text-bg-warning");
             countDraw++;
             obj.papier++;
-            round++;
-            score.push(round + '.kolo :' + ' Remíza!'); // pripočítanie + 1 ku skóre
+            round++;  // pripočítanie + 1 ku skóre
+            score.push(round + '.kolo :' + ' Remíza!'); 
         } else if (userChoice === 'n' && oneCall === 'n') {
             console.log('Remíza!')
             alert('Remíza!');
+            $("button.draw").removeClass("text-bg-light");
+            $("button.draw").addClass("text-bg-warning");
             countDraw++;
             obj.noznice++;
-            round++;
-            score.push(round + '.kolo :' + ' Remíza!'); // pripočítanie + 1 ku skóre
+            round++;  // pripočítanie + 1 ku skóre
+            score.push(round + '.kolo :' + ' Remíza!'); 
         }; 
-    
-        
-    
-        // Vypísanie na obrazovku jednotlivých počítadiel
-        document.getElementById('pcscore').innerHTML = scorePc;
-        document.getElementById('losingcount').innerHTML = countLosing;
-        document.getElementById('wincount').innerHTML = countWin;
-        document.getElementById('userscore').innerHTML = scoreUser;
-        document.getElementById('drawcount').innerHTML = countDraw;
-        document.getElementById('skore').innerHTML = score;
-    
-        document.getElementById('kamen').innerHTML =obj.kamen;
-        document.getElementById('papier').innerHTML =obj.papier;
-        document.getElementById('noznice').innerHTML =obj.noznice;
-    
-    
 
+        $("#name").on('click', function() {
+            $("input#name").removeAttr("disabled")
         });
+        
+            // Vypísanie na obrazovku jednotlivých počítadiel
+    document.getElementById('pcscore').innerHTML = scorePc;
+    document.getElementById('losingcount').innerHTML = countLosing;
+    document.getElementById('wincount').innerHTML = countWin;
+    document.getElementById('userscore').innerHTML = scoreUser;
+    document.getElementById('drawcount').innerHTML = countDraw;
+    document.getElementById('skore').innerHTML = score;
+
+    document.getElementById('kamen').innerHTML =obj.kamen;
+    document.getElementById('papier').innerHTML =obj.papier;
+    document.getElementById('noznice').innerHTML =obj.noznice;
     });
+
+    
+
+    
+
+    
+
+    
+
+
+
+
+
+});
+
+    
+
+
+// Podmienky pre výhru
+
+
+        //Voľba usera
+        // let userChoice; //= prompt('Tvoja voľba?');
+        // kpn = ['k',  'p',  'n'];
+        // console.log('User : ', userChoice);
         
+        // const oneCall = PcChoice();
+        // alert('Voľba PC : ' + oneCall);
+
+
+
+
+
+
+
+
+
+
+// HISTÓRIA
+function history(skore, round, score) {
+    history.addEventListener('click', history)
+
+    const list = document.getElementById(skore),
+            newItem = document.createElement('li');
+
+        newItem.textContent = round;
+        newItem.textContent = score;
+        list.appendChild(newItem);
     
-    
-    // Podmienky pre výhru
-    
-
-            //Voľba usera
-            // let userChoice; //= prompt('Tvoja voľba?');
-            // kpn = ['k',  'p',  'n'];
-            // console.log('User : ', userChoice);
-            
-            // const oneCall = PcChoice();
-            // alert('Voľba PC : ' + oneCall);
-    
-    
-   
-    
+    console.log;
+};
 
 
-   
-
-
-
-    // HISTÓRIA
-    function history(skore, round, score) {
-        history.addEventListener('click', history)
-
-        const list = document.getElementById(skore),
-                newItem = document.createElement('li');
-
-            newItem.textContent = round;
-            newItem.textContent = score;
-            list.appendChild(newItem);
-        
-        console.log;
-    };
-
-    
 //Voľba PC
 
 
 // playGame.addEventListener('click', game);
 // nextGame.addEventListener('click', game);
 
-});
 
 
 
-let oneCall = PcChoice();
-function PcChoice() {
-    const length = 1; 
-    // Declare all characters
-    const chars = 'kpn';
-    
-    // Pick characters randomly
-    let str = '';
-    for (let i = 0; i < length; i++) {
-        str += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    console.log('PC : ' + str ) 
 
-    return str;
-};
+
