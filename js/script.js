@@ -29,21 +29,44 @@ $( "button.game" ).on( "click", function game() {
         pcChoice = Math.floor(Math.random() * 3);
     
         if(pcChoice + 1 == 1){
-            oneCall = 'k';
+            oneCall = 'kameň';
         }
         if(pcChoice + 1 == 2){
-            oneCall = 'p';
+            oneCall = 'papier';
         }
         if(pcChoice + 1 == 3){
-            oneCall = 'n';
+            oneCall = 'nožnice';
         }
-    
+        
+        alert ('PC : ' + oneCall)
         console.log('PC : ' + oneCall);
         
-        $("#name").on('click', function() {
-            $("input#name").removeAttr("disabled")
-        });
-        
+       
+        if (userChoice === 'kameň' && oneCall === 'nožnice') {
+            winGame();
+        } if (userChoice === 'papier' && oneCall === 'kameň') {
+            winGame();
+        } if (userChoice === 'nožnice' && oneCall === 'papier') {
+            winGame(); 
+        }
+
+        if (userChoice === 'kameň' && oneCall === 'kameň') {
+            drawGame();
+        } if (userChoice === 'papier' && oneCall === 'papier') {
+            drawGame();
+        } if (userChoice === 'nožnice' && oneCall === 'nožnice') {
+            drawGame();
+        }
+
+        if (userChoice === 'kameň' && oneCall === 'papier') {
+            loseGame();
+        } if (userChoice === 'papier' && oneCall === 'nožnice') {
+            loseGame();
+        } if (userChoice === 'nožnice' && oneCall === 'kameň') {
+            loseGame();
+        }
+
+
     // Vypísanie na obrazovku jednotlivých počítadiel
     document.getElementById('pcscore').innerHTML = scorePc;
     document.getElementById('losingcount').innerHTML = countLosing;
@@ -62,10 +85,6 @@ $( "button.game" ).on( "click", function game() {
 });
 
 let winGame = function win() {
-    if (userChoice === 'k' && oneCall === 'n');        
-    if (userChoice === 'p' && oneCall === 'k'); 
-    if (userChoice === 'n' && oneCall === 'p');      
-        
     console.log('Výhra user!')
     alert('Výhra!');
 
@@ -80,10 +99,6 @@ let winGame = function win() {
 
 
 let drawGame = function draw() {
-    if (userChoice === 'k' && oneCall === 'k') 
-    if (userChoice === 'p' && oneCall === 'p')
-    if (userChoice === 'n' && oneCall === 'n')
-
     console.log('Remíza!')
     alert('Remíza!');
 
@@ -96,10 +111,6 @@ let drawGame = function draw() {
 };
 
 let loseGame = function lose() {
-    if (userChoice === 'k' && oneCall === 'p')
-    if (userChoice === 'p' && oneCall === 'n')
-    if (userChoice === 'n' && oneCall === 'k')
-
     console.log('Prehra user!')
     alert('Prehra!'); 
 
@@ -112,31 +123,60 @@ let loseGame = function lose() {
     score.push(round + '.kolo :' + ' Prehra user!'); 
 };
 
+const logwrite = function log() {
+    console.log(round + '.kolo');
+    console.log('User : ' + userChoice);
+}
+
 
 //Voľba usera kameň
 $("#k").on('click', function() {
-    userChoice = 'k';
+    userChoice = 'kameň';
+    
+    $("button.win, button.draw, button.lose").addClass("text-bg-light");
+
     obj.kamen++;
-    console.log(round + '.kolo');
-    console.log('User : ' + userChoice);
+    logwrite();
 });
 
 //Voľba usera papier
 $("#p").on('click', function() {
-    userChoice = 'p';
+    userChoice = 'papier';
+
+    $("button.win, button.draw, button.lose").addClass("text-bg-light");
+
     obj.papier++;
-    console.log(round + '.kolo');
-    console.log('User : ' + userChoice);
+    logwrite();
 });
 
 //Voľba usera nožnice
 $("#n").on('click', function() {
-    userChoice = 'n';
+    userChoice = 'nožnice';
+
+    $("button.win, button.draw, button.lose").addClass("text-bg-light");
 
     obj.noznice++;
-    console.log(round + '.kolo');
-    console.log('User : ' + userChoice);
+    logwrite();
 });
+
+
+$("#name").on('click', function() {
+    $("input#name").removeAttr("disabled")
+});
+
+$("img.submit").on('click', function() {
+    username = $("#name").val();
+    if(username != "") {
+        alert('Zadaj meno!')
+    }
+
+    // $(username).change(console.log('User : ' + userChoice));
+    //     console.log(username  + userChoice)
+    
+});
+
+
+
 
 
 
