@@ -22,7 +22,7 @@ let obj = {
 $( "button.game" ).on( "click", function game() {
     
     alert('Hra začína! Vyber si (kameň, papier, nožnice) a uvidíš či si vyhral!');
-    
+
     //Voľba PC
     $("button.option-btn").on('click', function(){
     
@@ -85,7 +85,7 @@ $( "button.game" ).on( "click", function game() {
 });
 
 let winGame = function win() {
-    console.log('Výhra user!')
+    console.log('Výhra ' + username + '!')
     alert('Výhra!');
 
     $("button.win").removeClass("text-bg-light");
@@ -94,7 +94,7 @@ let winGame = function win() {
     countWin++;
     round++;
     scoreUser ++;
-    score.push(round + '.kolo :' + ' Výhra user!');
+    score.push(round + '.kolo : ' + 'Výhra ' + username + '! ');
 }; 
 
 
@@ -111,7 +111,7 @@ let drawGame = function draw() {
 };
 
 let loseGame = function lose() {
-    console.log('Prehra user!')
+    console.log('Prehra ' + username + '!')
     alert('Prehra!'); 
 
     $("button.lose").removeClass("text-bg-light");
@@ -120,12 +120,12 @@ let loseGame = function lose() {
     scorePc++;
     countLosing++;
     round++;
-    score.push(round + '.kolo :' + ' Prehra user!'); 
+    score.push(round + '.kolo :' + ' Prehra ' + username + '!'); 
 };
 
 const logwrite = function log() {
     console.log(round + '.kolo');
-    console.log('User : ' + userChoice);
+    console.log(username + ' : ' + userChoice);
 }
 
 
@@ -160,20 +160,22 @@ $("#n").on('click', function() {
 });
 
 
-$("#name").on('click', function() {
-    $("input#name").removeAttr("disabled")
+$("#name").prop('disabled',true);
+
+
+$('.input-group-text').on('click', function() {
+    $('input').prop('disabled', false)
 });
+
 
 $("img.submit").on('click', function() {
     username = $("#name").val();
-    if(username != "") {
-        alert('Zadaj meno!')
+    if (username == "") {
+        alert('Zadaj svoje meno!')
     }
-
-    // $(username).change(console.log('User : ' + userChoice));
-    //     console.log(username  + userChoice)
-    
 });
+
+
 
 
 
