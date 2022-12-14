@@ -1,7 +1,7 @@
 //Variables
-let userChoice;
-let oneCall;
-let pcChoice;
+let userChoice = null;
+let oneCall = null;
+let pcChoice = null;
 
 let scoreUser = 0;
 let scorePc = 0;
@@ -24,16 +24,16 @@ let obj = {
 
 //Event listeners
 //Spustenie hry
-$( "button.game" ).on( "click", function game() {
+$( 'button.game' ).on( 'click', function game() {
     alert('Hra začína! Vyber si (kameň, papier, nožnice) a uvidíš či si vyhral!');
 });
 
 
 //Voľba usera kameň
-$("#k").on('click', function() {
+$('#k').on('click', function() {
     userChoice = 'kameň';
     
-    $("button.win, button.draw, button.lose").addClass("text-bg-light");
+    $('button.win, button.draw, button.lose').addClass('text-bg-light');
 
     obj.kamen++;
     _logwrite();
@@ -41,10 +41,10 @@ $("#k").on('click', function() {
 
 
 //Voľba usera papier
-$("#p").on('click', function() {
+$('#p').on('click', function() {
     userChoice = 'papier';
 
-    $("button.win, button.draw, button.lose").addClass("text-bg-light");
+    $('button.win, button.draw, button.lose').addClass('text-bg-light');
 
     obj.papier++;
     _logwrite();
@@ -52,10 +52,10 @@ $("#p").on('click', function() {
 
 
 //Voľba usera nožnice
-$("#n").on('click', function() {
+$('#n').on('click', function() {
     userChoice = 'nožnice';
 
-    $("button.win, button.draw, button.lose").addClass("text-bg-light");
+    $('button.win, button.draw, button.lose').addClass('text-bg-light');
 
     obj.noznice++;
     _logwrite();
@@ -63,17 +63,15 @@ $("#n").on('click', function() {
 
 
 //Voľba PC
-$("button.option-btn").on('click', function(){
+$('button.option-btn').on('click', function(){
 
     pcChoice = Math.floor(Math.random() * 3);
 
-    if(pcChoice + 1 == 1){
+    if(pcChoice == 1){
         oneCall = 'kameň';
-    }
-    if(pcChoice + 1 == 2){
+    } else if(pcChoice == 2){
         oneCall = 'papier';
-    }
-    if(pcChoice + 1 == 3){
+    } else if(pcChoice == 3){
         oneCall = 'nožnice';
     }
     
@@ -83,36 +81,39 @@ $("button.option-btn").on('click', function(){
 
     if (userChoice === 'kameň' && oneCall === 'nožnice') {
         winGame();
-    } if (userChoice === 'papier' && oneCall === 'kameň') {
+    } else if (userChoice === 'papier' && oneCall === 'kameň') {
         winGame();
-    } if (userChoice === 'nožnice' && oneCall === 'papier') {
+    } else if (userChoice === 'nožnice' && oneCall === 'papier') {
         winGame(); 
     }
 
     if (userChoice === 'kameň' && oneCall === 'kameň') {
         drawGame();
-    } if (userChoice === 'papier' && oneCall === 'papier') {
+    } else if (userChoice === 'papier' && oneCall === 'papier') {
         drawGame();
-    } if (userChoice === 'nožnice' && oneCall === 'nožnice') {
+    } else if (userChoice === 'nožnice' && oneCall === 'nožnice') {
         drawGame();
     }
 
     if (userChoice === 'kameň' && oneCall === 'papier') {
         loseGame();
-    } if (userChoice === 'papier' && oneCall === 'nožnice') {
+    } else if (userChoice === 'papier' && oneCall === 'nožnice') {
         loseGame();
-    } if (userChoice === 'nožnice' && oneCall === 'kameň') {
+    } else if (userChoice === 'nožnice' && oneCall === 'kameň') {
         loseGame();
     }
 
 
 // Vypísanie na obrazovku jednotlivých počítadiel
+document.getElementById('userscore').innerHTML = scoreUser;
 document.getElementById('pcscore').innerHTML = scorePc;
+
+
+document.getElementById('skore').innerHTML = score;
 document.getElementById('losingcount').innerHTML = count.lose;
 document.getElementById('wincount').innerHTML = count.win;
-document.getElementById('userscore').innerHTML = scoreUser;
 document.getElementById('drawcount').innerHTML = count.draw;
-document.getElementById('skore').innerHTML = score;
+
 
 document.getElementById('kamen').innerHTML =obj.kamen;
 document.getElementById('papier').innerHTML =obj.papier;
@@ -121,8 +122,7 @@ document.getElementById('noznice').innerHTML =obj.noznice;
 
 
 
-$("#name").prop('disabled',true);
-
+$('#name').prop('disabled',true);
 
 
 $('.input-group-text').on('click', function() {
@@ -131,9 +131,9 @@ $('.input-group-text').on('click', function() {
 
 
 
-$("img.submit").on('click', function() {
-    username = $("#name").val();
-    if (username == "") {
+$('img.submit').on('click', function() {
+    username = $('#name').val();
+    if (username == '') {
         alert('Zadaj svoje meno!')
     }
 });
@@ -145,8 +145,8 @@ let winGame = function win() {
     console.log('Výhra ' + username + '!')
     alert('Výhra!');
 
-    $("button.win").removeClass("text-bg-light");
-    $("button.win").addClass("text-bg-success");
+    $('button.win').removeClass('text-bg-light');
+    $('button.win').addClass('text-bg-success');
 
     count.win++;
     round++;
@@ -159,8 +159,8 @@ let drawGame = function draw() {
     console.log('Remíza!')
     alert('Remíza!');
 
-    $("button.draw").removeClass("text-bg-light");
-    $("button.draw").addClass("text-bg-warning");
+    $('button.draw').removeClass('text-bg-light');
+    $('button.draw').addClass('text-bg-warning');
 
     count.draw++;
     round++;
@@ -172,8 +172,8 @@ let loseGame = function lose() {
     console.log('Prehra ' + username + '!')
     alert('Prehra!'); 
 
-    $("button.lose").removeClass("text-bg-light");
-    $("button.lose").addClass("text-bg-danger");
+    $('button.lose').removeClass('text-bg-light');
+    $('button.lose').addClass('text-bg-danger');
 
     scorePc++;
     count.lose++;
