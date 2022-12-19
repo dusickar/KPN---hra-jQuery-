@@ -1,6 +1,5 @@
 //Variables
 let userChoice = null;
-let oneCall = null;
 let pcChoice = null;
 
 let scoreUser = 0;
@@ -68,39 +67,39 @@ $('button.option-btn').on('click', function(){
     pcChoice = Math.floor(Math.random() * 3);
 
     if(pcChoice == 1){
-        oneCall = 'kameň';
+        pcSelect = 'kameň';
     } else if(pcChoice == 2){
-        oneCall = 'papier';
+        pcSelect = 'papier';
     } else if(pcChoice == 3){
-        oneCall = 'nožnice';
+        pcSelect = 'nožnice';
     }
     
-    alert ('PC : ' + oneCall)
-    console.log('PC : ' + oneCall);
+    alert ('PC : ' + pcSelect)
+    console.log('PC : ' + pcSelect);
 
 
-    if (userChoice === 'kameň' && oneCall === 'nožnice') {
-        winGame();
-    } else if (userChoice === 'papier' && oneCall === 'kameň') {
-        winGame();
-    } else if (userChoice === 'nožnice' && oneCall === 'papier') {
-        winGame(); 
+    if (userChoice === 'kameň' && pcSelect === 'nožnice') {
+        win();
+    } else if (userChoice === 'papier' && pcSelect === 'kameň') {
+        win();
+    } else if (userChoice === 'nožnice' && pcSelect === 'papier') {
+        win(); 
     }
 
-    if (userChoice === 'kameň' && oneCall === 'kameň') {
-        drawGame();
-    } else if (userChoice === 'papier' && oneCall === 'papier') {
-        drawGame();
-    } else if (userChoice === 'nožnice' && oneCall === 'nožnice') {
-        drawGame();
+    if (userChoice === 'kameň' && pcSelect === 'kameň') {
+        draw();
+    } else if (userChoice === 'papier' && pcSelect === 'papier') {
+        draw();
+    } else if (userChoice === 'nožnice' && pcSelect === 'nožnice') {
+        draw();
     }
 
-    if (userChoice === 'kameň' && oneCall === 'papier') {
-        loseGame();
-    } else if (userChoice === 'papier' && oneCall === 'nožnice') {
-        loseGame();
-    } else if (userChoice === 'nožnice' && oneCall === 'kameň') {
-        loseGame();
+    if (userChoice === 'kameň' && pcSelect === 'papier') {
+        lose();
+    } else if (userChoice === 'papier' && pcSelect === 'nožnice') {
+        lose();
+    } else if (userChoice === 'nožnice' && pcSelect === 'kameň') {
+        lose();
     }
 
 
@@ -141,7 +140,7 @@ $('img.submit').on('click', function() {
 
 
 //custom function
-let winGame = function win() {
+function win() {
     console.log('Výhra ' + username + '!')
     alert('Výhra!');
 
@@ -155,7 +154,7 @@ let winGame = function win() {
 }; 
 
 
-let drawGame = function draw() {
+function draw() {
     console.log('Remíza!')
     alert('Remíza!');
 
@@ -168,7 +167,7 @@ let drawGame = function draw() {
 };
 
 
-let loseGame = function lose() {
+function lose() {
     console.log('Prehra ' + username + '!')
     alert('Prehra!'); 
 
