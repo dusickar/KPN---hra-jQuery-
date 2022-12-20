@@ -1,6 +1,7 @@
 //Variables
 let userChoice = null;
 let pcChoice = null;
+let pcSelect = null;
 
 let scoreUser = 0;
 let scorePc = 0;
@@ -28,37 +29,25 @@ $( 'button.game' ).on( 'click', function game() {
 });
 
 
-//Voľba usera kameň
-$('#k').on('click', function() {
+
+$('#k').click(function() {
     userChoice = 'kameň';
-    
-    $('button.win, button.draw, button.lose').addClass('text-bg-light');
-
     obj.kamen++;
-    _logwrite();
+    logwriteResetbadge();
 });
 
-
-//Voľba usera papier
-$('#p').on('click', function() {
+$('#p').click(function() {
     userChoice = 'papier';
-
-    $('button.win, button.draw, button.lose').addClass('text-bg-light');
-
     obj.papier++;
-    _logwrite();
+    logwriteResetbadge();
 });
 
-
-//Voľba usera nožnice
-$('#n').on('click', function() {
+$('#n').click(function() {
     userChoice = 'nožnice';
-
-    $('button.win, button.draw, button.lose').addClass('text-bg-light');
-
     obj.noznice++;
-    _logwrite();
+    logwriteResetbadge();
 });
+
 
 
 //Voľba PC
@@ -186,6 +175,13 @@ function lose() {
 const _logwrite = function log() {
     console.log(round + '.kolo');
     console.log(username + ' : ' + userChoice);
+}
+
+function logwriteResetbadge() {
+       
+    $('button.win, button.draw, button.lose').addClass('text-bg-light');
+
+    _logwrite();
 }
 
 
