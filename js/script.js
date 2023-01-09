@@ -24,10 +24,26 @@ let obj = {
 
 //Event listeners
 //Spustenie hry
-$( 'button.game' ).on( 'click', function game() {
+$( 'button.game' ).on( 'click', function() {
     alert('Hra začína! Vyber si (kameň, papier, nožnice) a uvidíš či si vyhral!');
 });
 
+
+// $('button.action-button').on('click', ($event) => {
+//     if ($event.target.value === 'k') {
+//         userChoice = 'kameň';
+//         obj.kamen++;
+//         logwriteResetbadge();
+//     } else if ($event.target.value === 'p') {
+//         userChoice = 'papier';
+//         obj.papier++;
+//         logwriteResetbadge();
+//     } else if ($event.target.value === 'n') {
+//         userChoice = 'nožnice';
+//         obj.noznice++;
+//         logwriteResetbadge();
+//     }
+// });
 
 
 $('#k').click(function() {
@@ -51,7 +67,7 @@ $('#n').click(function() {
 
 
 //Voľba PC
-$('button.option-btn').on('click', function(){
+$('button.option-btn').on('click', function() {
 
     pcChoice = Math.floor(Math.random() * 3);
 
@@ -75,7 +91,7 @@ $('button.option-btn').on('click', function(){
         win(); 
     }
 
-    if (userChoice === 'kameň' && pcSelect === 'kameň') {
+    else if (userChoice === 'kameň' && pcSelect === 'kameň') {
         draw();
     } else if (userChoice === 'papier' && pcSelect === 'papier') {
         draw();
@@ -83,7 +99,7 @@ $('button.option-btn').on('click', function(){
         draw();
     }
 
-    if (userChoice === 'kameň' && pcSelect === 'papier') {
+    else if (userChoice === 'kameň' && pcSelect === 'papier') {
         lose();
     } else if (userChoice === 'papier' && pcSelect === 'nožnice') {
         lose();
@@ -172,7 +188,7 @@ function lose() {
 
 
 //private functions
-const _logwrite = function log() {
+function log() {
     console.log(round + '.kolo');
     console.log(username + ' : ' + userChoice);
 }
@@ -181,7 +197,7 @@ function logwriteResetbadge() {
        
     $('button.win, button.draw, button.lose').addClass('text-bg-light');
 
-    _logwrite();
+    log();
 }
 
 
