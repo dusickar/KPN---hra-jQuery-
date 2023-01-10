@@ -29,39 +29,22 @@ $( 'button.game' ).on( 'click', function() {
 });
 
 
-// $('button.action-button').on('click', ($event) => {
-//     if ($event.target.value === 'k') {
-//         userChoice = 'kameň';
-//         obj.kamen++;
-//         logwriteResetbadge();
-//     } else if ($event.target.value === 'p') {
-//         userChoice = 'papier';
-//         obj.papier++;
-//         logwriteResetbadge();
-//     } else if ($event.target.value === 'n') {
-//         userChoice = 'nožnice';
-//         obj.noznice++;
-//         logwriteResetbadge();
-//     }
-// });
+$('#k.action-button, #p.action-button, #n.action-button').on('click', ($event) => {
+    if ($event.currentTarget === k) {
+        userChoice = 'kameň';
+        obj.kamen++;
+        logwriteResetbadge();
+    } else if ($event.currentTarget === p) {
+        userChoice = 'papier';
+        obj.papier++;
+        logwriteResetbadge();
+    } else if ($event.currentTarget === n) {
+        userChoice = 'nožnice';
+        obj.noznice++;
+        logwriteResetbadge();
+    }
 
-
-$('#k').click(function() {
-    userChoice = 'kameň';
-    obj.kamen++;
-    logwriteResetbadge();
-});
-
-$('#p').click(function() {
-    userChoice = 'papier';
-    obj.papier++;
-    logwriteResetbadge();
-});
-
-$('#n').click(function() {
-    userChoice = 'nožnice';
-    obj.noznice++;
-    logwriteResetbadge();
+    console.log($event);
 });
 
 
